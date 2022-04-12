@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-bp
+  namespace: staging
+spec:
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - frontend-bp
+      - key: env
+        operator: In
+        values:
+          - staging
+  template:
+    metadata:
+      labels:
+        app: frontend-bp
+        env: staging
+    spec:
+      containers:
+      - name: frontend-bp
+        image: dickydechamp/bpfe:latest
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-bp-service
+spec:
+  type: NodePort
+  selector:
+    app: frontend-bp
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+
