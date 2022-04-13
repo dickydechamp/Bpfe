@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-bp
-  namespace: staging
+  namespace: production
 spec:
   selector:
     matchExpressions:
@@ -13,12 +13,12 @@ spec:
       - key: env
         operator: In
         values:
-          - staging
+          - production
   template:
     metadata:
       labels:
         app: frontend-bp
-        env: staging
+        env: production
     spec:
       containers:
       - name: frontend-bp
@@ -40,4 +40,3 @@ spec:
   - port: 3000
     targetPort: 3000
     protocol: TCP
-
