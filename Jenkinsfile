@@ -1,7 +1,7 @@
 pipeline {
     agent { label '' }
     environment {
-        registry = "docker.io/dickydechmp/bpfe"
+        registry = "docker.io/dickydechamp/bpfe"
         serviceName= 'frontend_bp_trunkbase'
         dockerImage = ''
         branchname = "master"
