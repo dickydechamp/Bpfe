@@ -68,7 +68,7 @@ pipeline {
         stage('Deploy to Production') {
             steps{
                 script {
-                        sh "sed -i 's/bpfe:latest/bpbe:$env.VERSION/g' kubernetes/production/deployment.yaml"
+                        sh "sed -i 's/bpfe:latest/bpfe:$env.VERSION/g' kubernetes/production/deployment.yaml"
                         sh "kubectl apply -f kubernetes/production/deployment.yaml"
                         sh "kubectl rollout status deployment frontend-bp -n production"
                         sh "kubectl get pods -n production | grep frontend-bp"
